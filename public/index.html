@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Painting Editor</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar"><div class="logo">Art</div><h1>Painting Editor</h1></header>
+
+  <div class="layout">
+    <!-- LEFT: scrollable list of painting icons + link buttons (filled in by app.js via fetch) -->
+    <aside id="paintingList" class="list" aria-label="Paintings"></aside>
+
+    <!-- RIGHT: edit form -->
+    <main class="editor">
+      <p id="placeholder" class="hint">Select a painting on the left to edit it.</p>
+
+      <form id="paintingForm" action="/api/paintings" method="POST" hidden>
+        <div class="titlebar">
+          <img id="preview" alt="" class="preview">
+          <h2 id="formHeading">Painting</h2>
+        </div>
+        <p id="message" class="message" role="status"></p>
+
+        <section>
+          <div class="section-info"><h3>Basics</h3><p>Who made it and what it is called.</p></div>
+          <fieldset>
+            <!-- Primary key: displayed only, never an input -->
+            <p class="readonly">Painting ID: <strong id="paintingIdText"></strong></p>
+            <div class="row">
+              <label>Title <input type="text" name="Title" required></label>
+              <label>Year <input type="number" name="YearOfWork"></label>
+            </div>
+            <label>Artist <select name="ArtistID" id="artistSelect"></select></label>
+            <label>Medium <input type="text" name="Medium"></label>
+          </fieldset>
+        </section>
+
+        <section>
+          <div class="section-info"><h3>Size &amp; Cost</h3><p>Physical size and pricing.</p></div>
+          <fieldset>
+            <div class="row">
+              <label>Width <input type="number" name="Width"></label>
+              <label>Height <input type="number" name="Height"></label>
+              <label>Shape <select name="ShapeID" id="shapeSelect"></select></label>
+            </div>
+            <div class="row">
+              <label>Cost <input type="number" step="0.01" name="Cost"></label>
+              <label>MSRP <input type="number" step="0.01" name="MSRP"></label>
+            </div>
+          </fieldset>
+        </section>
+
+        <section>
+          <div class="section-info"><h3>Location</h3><p>Where the painting is held.</p></div>
+          <fieldset>
+            <label>Gallery <select name="GalleryID" id="gallerySelect"></select></label>
+            <div class="row">
+              <label>Accession Number <input type="text" name="AccessionNumber"></label>
+              <label>Image File <input type="text" name="ImageFileName" required></label>
+            </div>
+            <label>Copyright <input type="text" name="CopyrightText"></label>
+          </fieldset>
+        </section>
+
+        <section>
+          <div class="section-info"><h3>Description</h3><p>Text shown about the work.</p></div>
+          <fieldset>
+            <label>Excerpt <textarea name="Excerpt" rows="3"></textarea></label>
+            <label>Description <textarea name="Description" rows="7"></textarea></label>
+            <label>Google Description <textarea name="GoogleDescription" rows="3"></textarea></label>
+          </fieldset>
+        </section>
+
+        <section>
+          <div class="section-info"><h3>Links</h3><p>Related web pages.</p></div>
+          <fieldset>
+            <label>Museum Link <input type="text" name="MuseumLink"></label>
+            <label>Wikipedia Link <input type="text" name="WikiLink"></label>
+            <label>Google Link <input type="text" name="GoogleLink"></label>
+          </fieldset>
+        </section>
+
+        <div class="buttons">
+          <button type="submit" class="primary">Save</button>
+          <button type="reset" class="secondary">Reset</button>
+        </div>
+      </form>
+    </main>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
