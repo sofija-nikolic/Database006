@@ -1,0 +1,9 @@
+{
+  "name": "database006",
+  "version": "1.0.0",
+  "description": "CSC 350 in-class database activity 006 - edit paintings stored in SQLite",
+  "main": "server.js",
+  "scripts": { "start": "node server.js" },
+  "engines": { "node": ">=22.13.0" },
+  "license": "ISC"
+}
